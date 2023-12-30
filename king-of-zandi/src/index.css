@@ -1,0 +1,34 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@font-face {
+  font-family: "nanumfont";
+  font-weight: 200;
+  src: url("./fonts/NanumSquareL.ttf")format("woff2");
+}
+
+@font-face {
+  font-family: "nanumfont";
+  font-weight: 400;
+  src: url("./fonts/NanumSquareR.ttf") format("woff2");
+}
+
+@font-face {
+  font-family: "nanumfont";
+  font-weight: 700;
+  src: url("./fonts/NanumSquareB.ttf")format("woff2");
+}
+
+@font-face {
+  font-family: "nanumfont";
+  font-weight: 800;
+  src: url("./fonts/NanumSquareEB.ttf")format("woff2");
+}
+
+body {
+  background-color: black;
+  color: white;
+  font-family: "nanumfont", sans-serif;
+
+}
