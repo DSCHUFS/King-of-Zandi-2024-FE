@@ -1,5 +1,6 @@
 import React from "react";
 import ProfileListItem from "./ProfileListItem";
+import ProfileListBox from "./ProfileListBox";
 
 const ProfileList = ({ n }) => {
     // Generate an array of indices from 1 to n
@@ -10,6 +11,7 @@ const ProfileList = ({ n }) => {
             {indices.map((index) => (
                 <ProfileListItem key={index} index={index} />
             ))}
+            <ProfileListBox />
         </div>
     );
 };
