@@ -9,6 +9,8 @@ module.exports = {
             screens: {
                 sm: "430px", // 핸드폰 뷰
                 md: "768px",
+                lg: "1200px", // 전체 뷰
+                ml: "960px", // 메인 시간 hidden
             },
             colors: {
                 pointColor: "#60D68A",

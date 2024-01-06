@@ -59,12 +59,15 @@ const ProfileListItem = ({ index = 0 }) => {
                 </div>
             </div>
 
-            <div className="flex">
-                <div className="hidden md:block font-normal text-sm text-nowrap mx-4">
+            <div className="flex md:flex-col lg:flex-row">
+                <div className="hidden lg:block font-normal text-sm text-nowrap mx-4">
                     최근 커밋 시간
                 </div>
-                <div className="hidden md:block font-extrabold text-base mr-8">
-                    2024년 1월 13일 16:03:22
+                <div className="hidden ml:block font-extrabold text-base mr-2">
+                    2024년 1월 13일
+                </div>
+                <div className="hidden ml:block font-extrabold text-base mr-8">
+                    16:03:22
                 </div>
             </div>
 
