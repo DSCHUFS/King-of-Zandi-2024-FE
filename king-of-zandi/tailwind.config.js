@@ -12,6 +12,7 @@ module.exports = {
             },
             colors: {
                 pointColor: "#60D68A",
+                faultColor: "#D66060",
                 bgColor: "#242625",
                 divideColor: "#737373",
                 dummyColor: "#999999",
