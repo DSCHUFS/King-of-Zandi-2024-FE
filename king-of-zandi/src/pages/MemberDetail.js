@@ -1,12 +1,83 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { ReactComponent as Left } from "../assets/image/left.svg";
 import { ReactComponent as Link } from "../assets/image/link.svg";
 import TodayCommitsBox from "../components/TodayCommitsBox";
 import CommitStreakBox from "../components/CommitStreakBox";
+import axios from "axios";
 
 function MemberDetail() {
-    let { memberId } = useParams();
+    let { githubProfileID } = useParams();
+    const [userData, setUserData] = useState(null);
+    const [todayCommits, setTodayCommits] = useState([]);
+    const [lastUpdatedAt, setLastUpdatedAt] = useState(null);
+
+    useEffect(() => {
+        // 사용자 데이터 가져오기
+        axios
+            .get(`https://api-jandi.gdschufs.com/profiles/${githubProfileID}`)
+            .then((res) => {
+                setUserData(res.data.data);
+                setLastUpdatedAt(res.data.lastUpdatedAt);
+            })
+            .catch((err) => {
+                console.log(err);
+            });
+
+        // 오늘의 커밋 데이터 가져오기
+        axios
+            .get(
+                `https://api-jandi.gdschufs.com/profiles/${githubProfileID}/pushEvents/today`
+            )
+            .then((res) => {
+                setTodayCommits(res.data.data);
+            })
+            .catch((err) => {
+                console.log(err);
+            });
+
+        // example data
+
+        // setUserData({
+        //     name: "Jane Doe",
+        //     githubUsername: "janedoe123",
+        //     websiteUrl: "https://www.janedoe.com",
+        //     totalCommitCounts: 150,
+        //     last28daysPushCounts: [
+        //         2, 0, 5, 3, 1, 4, 2, 0, 1, 3, 2, 4, 5, 6, 0, 1, 2, 3, 4, 0, 1,
+        //         2, 3, 4, 5, 6, 0, 1,
+        //     ],
+        //     latestPushedAt: "2024-01-05T12:30:00Z",
+        //     createdAt: "2020-06-15T09:00:00Z",
+        //     modifiedAt: "2024-01-05T15:00:00Z",
+        // });
+
+        // setTodayCommits([
+        //     {
+        //         id: "event12345",
+        //         repositoryName: "repo-one",
+        //         repositoryUrl: "https://github.com/janedoe/repo-one",
+        //         createdAt: "2024-01-05T10:00:00Z",
+        //     },
+        //     {
+        //         id: "event12346",
+        //         repositoryName: "repo-two",
+        //         repositoryUrl: "https://github.com/janedoe/repo-two",
+        //         createdAt: "2024-01-04T11:20:00Z",
+        //     },
+        //     {
+        //         id: "event12347",
+        //         repositoryName: "repo-three",
+        //         repositoryUrl: "https://github.com/janedoe/repo-three",
+        //         createdAt: "2024-01-03T08:15:00Z",
+        //     },
+        // ]);
+    }, [githubProfileID]);
+
+    if (!userData) {
+        return <div>Loading...</div>;
+    }
+
     return (
         <div className="flex flex-col px-4 md:px-20 pb-12 md:pb-32 bg-black">
             <div className="flex items-center mt-4 md:mt-7">
@@ -16,12 +87,15 @@ function MemberDetail() {
             <div className="flex mt-5 md:mt-10">
                 <div className="avatar mr-3 md:mr-7">
                     <div className=" w-14 h-14 md:w-28 md:h-28 rounded-full">
-                        <img src="https://daisyui.com/images/stock/photo-1534528741775-53994a69daeb.jpg" />
+                        <img
+                            alt="avatar"
+                            src={`https://github.com/${userData.githubUsername}.png`}
+                        />
                     </div>
                 </div>
                 <div className="flex flex-col justify-center">
                     <div className="text-xl md:text-4xl font-extrabold md:mb-5">
-                        진윤겸님의 커밋 기록
+                        {userData.name}님의 커밋 기록
                     </div>
                     <div className="hidden md:flex md:flex-wrap ">
                         <div className=" md:block text-xl mr-3">
@@ -29,22 +103,24 @@ function MemberDetail() {
                         </div>
                         <div className=" md:block text-xl font-extrabold mr-5">
                             {" "}
-                            2024년 1월 13일 16:03:22{" "}
+                            {new Date(lastUpdatedAt).toLocaleString()}
                         </div>
                         <div className="flex flex-wrap">
                             {" "}
-                            <div className=" md:block text-xl mr-3">진윤겸</div>
+                            <div className=" md:block text-xl mr-3">
+                                {userData.name}
+                            </div>
                             <div className=" md:block text-xl font-extrabold">
-                                @Younkyum
+                                @{userData.githubUsername}
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
             <div className="flex mt-4">
-                <div className="text-base mr-3 md:hidden">진윤겸</div>
+                <div className="text-base mr-3 md:hidden">{userData.name}</div>
                 <div className="text-base font-extrabold md:hidden">
-                    @Younkyum
+                    @{userData.githubUsername}
                 </div>
             </div>
             <div className="flex mt-5">
@@ -61,7 +137,7 @@ function MemberDetail() {
                         총 커밋 횟수
                     </div>
                     <div className=" text-xs md:text-2xl font-extrabold text-pointColor mt-2">
-                        745
+                        {userData.totalCommitCounts}
                     </div>
                 </div>
                 <div className="flex flex-col">
@@ -69,7 +145,7 @@ function MemberDetail() {
                         최근 커밋 시간
                     </div>
                     <div className="text-xs md:text-2xl font-extrabold mt-2">
-                        2024년 1월 13일 16;03:22
+                        {new Date(userData.latestPushedAt).toLocaleString()}
                     </div>
                 </div>
             </div>
@@ -82,7 +158,7 @@ function MemberDetail() {
                     </div>
                     <div className="til-link flex text-sm md:text-xl md:mr-7 text-pointColor">
                         <Link className="mr-2 md:w-6 md:h-6" />
-                        https://onve.tistory.com/
+                        {userData.websiteUrl}
                     </div>
                 </div>
 
@@ -92,24 +168,33 @@ function MemberDetail() {
                     </div>
                     <div className="github-link flex text-sm md:text-xl text-pointColor">
                         <Link className="mr-2 md:w-6 md:h-6" />
-                        https://github.com/Younkyum
+                        https://github.com/{userData.githubUsername}
                     </div>
                 </div>
             </div>
             <div className="flex items-center mt-7 mb-3 md:mt-8 md:mb-5">
                 <div className="font-bold text-sm mr-3 md:text-xl">
-                    Today Commits
+                    Push Events
                 </div>
                 <div className="flex items-center justify-center rounded-full text-xs font-bold bg-pointColor w-7 h-4 md:w-9 md:h-6">
-                    1
+                    {todayCommits.length}
                 </div>
             </div>
-            <TodayCommitsBox />
+            {todayCommits.length > 0 && (
+                <TodayCommitsBox
+                    commits={todayCommits[0]}
+                    name={userData.name}
+                />
+            )}{" "}
             {/* Commit Streak Box 구현 */}
             <div className="font-bold text-sm mr-3 md:text-xl mt-7 md:mt-16 mb-3 md:mb-5">
                 Commit Streak🔥
             </div>{" "}
-            <CommitStreakBox />
+            {userData && userData.last28daysContributionCounts && (
+                <CommitStreakBox
+                    pushCounts={userData.last28daysContributionCounts}
+                />
+            )}
         </div>
     );
 }
