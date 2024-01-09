@@ -7,7 +7,7 @@ const Home = () => {
     return (
         <div>
             <TabBar />
-            <ProfileList n={1} />
+            <ProfileList />
         </div>
     );
 };

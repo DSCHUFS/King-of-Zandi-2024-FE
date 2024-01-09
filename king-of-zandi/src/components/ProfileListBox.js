@@ -1,21 +1,21 @@
 import React from "react";
 import { ReactComponent as Profile } from "../assets/image/profile.svg";
 
-const ProfileListBox = () => {
+const ProfileListBox = ({ name, last28, githubUsername }) => {
     return (
         <div className="flex justify-between items-center m-3 p-2 md:p-2 bg-bgColor h-20 md:h-16 rounded-lg">
             <div className="flex items-center">
-                <Profile className="w-8 mr-3 h-8 md:w-8 md:h-8 text-nowrap" />
-                <div className="font-extrabold text-base text-nowrap mr-4">
-                    김훕스
+                <img src={`https://github.com/${githubUsername}.png`} className="w-8 mr-3 h-8 md:w-8 md:h-8 text-nowrap rounded-full" />
+                <div className="font-extrabold text-base text-nowrap mr-10">
+                    {name}
                 </div>
             </div>
             <div className="flex flex-wrap">
                 <div className="flex flex-wrap">
-                    {Array.from({ length: 28 }).map((_, index) => (
+                    {last28.map((i, index) => (
                         <div
                             key={index}
-                            className="w-5 h-5 bg-white rounded-sm m-[2px]"
+                            className={`w-5 h-5 ${i === 0 ? "bg-white" : "bg-pointColor"} rounded-sm m-[2px]`}
                         ></div>
                     ))}
                 </div>
