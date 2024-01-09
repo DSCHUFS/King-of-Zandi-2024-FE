@@ -1,9 +1,10 @@
 import React from "react";
 import { ReactComponent as Profile } from "../assets/image/profile.svg";
+import { Link } from "react-router-dom"
 
 const ProfileListBox = ({ name, last28, githubUsername }) => {
     return (
-        <div className="flex justify-between items-center m-3 p-2 md:p-2 bg-bgColor h-20 md:h-16 rounded-lg">
+        <Link to={`/member/${githubUsername}`} className="flex justify-between items-center m-3 p-2 md:p-2 bg-bgColor h-20 md:h-16 rounded-lg">
             <div className="flex items-center">
                 <img src={`https://github.com/${githubUsername}.png`} className="w-8 mr-3 h-8 md:w-8 md:h-8 text-nowrap rounded-full" />
                 <div className="font-extrabold text-base text-nowrap mr-10">
@@ -28,7 +29,7 @@ const ProfileListBox = ({ name, last28, githubUsername }) => {
                     ))}
                 </div> */}
             </div>
-        </div>
+        </Link>
     );
 };
 

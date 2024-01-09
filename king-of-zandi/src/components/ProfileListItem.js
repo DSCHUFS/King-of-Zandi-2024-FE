@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom"
 
 const Box = ({ color }) => {
     return <div className={`w-2 h-2 rounded-[1px] m-0.5 ${color}`}></div>;
@@ -52,7 +53,7 @@ const ProfileListItem = ({ index,
     const { date, time } = extractDateAndTime(lastPush)
 
     return (
-        <div className="flex justify-between items-center m-3 p-4 md:p-4 bg-bgColor h-20 md:h-16 rounded-lg">
+        <Link to={`/member/${githubUsername}`} className=" flex justify-between items-center m-3 p-4 md:p-4 bg-bgColor h-20 md:h-16 rounded-lg">
             <div className="flex items-center">
                 <div className="font-extrabold text-xl w-5">{index}</div>
                 <img src={`https://github.com/${githubUsername}.png`} className="w-12 mx-3 h-12 md:w-12 md:h-12 text-nowrap rounded-full" />
@@ -92,7 +93,7 @@ const ProfileListItem = ({ index,
                 </div>
             </div>
             <Grid last28={last28} />
-        </div>
+        </Link>
     );
 };
 
