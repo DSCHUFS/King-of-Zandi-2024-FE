@@ -105,7 +105,7 @@ function MemberDetail() {
                         Streak🔥
                     </div>
                     <div className=" text-xs md:text-2xl font-extrabold text-pointColor mt-2">
-                        15
+                        {userData.streakCounts}
                     </div>
                 </div>
                 <div className="flex flex-col mr-5  md:mr-16">
@@ -113,7 +113,7 @@ function MemberDetail() {
                         총 커밋 횟수
                     </div>
                     <div className=" text-xs md:text-2xl font-extrabold text-pointColor mt-2">
-                        {userData.totalCommitCounts}
+                        {userData.totalContributions}
                     </div>
                 </div>
                 <div className="flex flex-col">
