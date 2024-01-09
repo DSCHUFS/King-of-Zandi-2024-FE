@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import { ReactComponent as Left } from "../assets/image/left.svg";
-import { ReactComponent as Link } from "../assets/image/link.svg";
+import { ReactComponent as LinkIcon } from "../assets/image/link.svg";
 import TodayCommitsBox from "../components/TodayCommitsBox";
 import CommitStreakBox from "../components/CommitStreakBox";
 import axios from "axios";
@@ -35,54 +35,23 @@ function MemberDetail() {
             .catch((err) => {
                 console.log(err);
             });
-
-        // example data
-
-        // setUserData({
-        //     name: "Jane Doe",
-        //     githubUsername: "janedoe123",
-        //     websiteUrl: "https://www.janedoe.com",
-        //     totalCommitCounts: 150,
-        //     last28daysPushCounts: [
-        //         2, 0, 5, 3, 1, 4, 2, 0, 1, 3, 2, 4, 5, 6, 0, 1, 2, 3, 4, 0, 1,
-        //         2, 3, 4, 5, 6, 0, 1,
-        //     ],
-        //     latestPushedAt: "2024-01-05T12:30:00Z",
-        //     createdAt: "2020-06-15T09:00:00Z",
-        //     modifiedAt: "2024-01-05T15:00:00Z",
-        // });
-
-        // setTodayCommits([
-        //     {
-        //         id: "event12345",
-        //         repositoryName: "repo-one",
-        //         repositoryUrl: "https://github.com/janedoe/repo-one",
-        //         createdAt: "2024-01-05T10:00:00Z",
-        //     },
-        //     {
-        //         id: "event12346",
-        //         repositoryName: "repo-two",
-        //         repositoryUrl: "https://github.com/janedoe/repo-two",
-        //         createdAt: "2024-01-04T11:20:00Z",
-        //     },
-        //     {
-        //         id: "event12347",
-        //         repositoryName: "repo-three",
-        //         repositoryUrl: "https://github.com/janedoe/repo-three",
-        //         createdAt: "2024-01-03T08:15:00Z",
-        //     },
-        // ]);
     }, [githubProfileID]);
 
     if (!userData) {
-        return <div>Loading...</div>;
+        return (
+            <div className=" flex justify-center mt-72">
+                <div className="custom-loader"></div>
+            </div>
+        );
     }
 
     return (
         <div className="flex flex-col px-4 md:px-20 pb-12 md:pb-32 bg-black">
             <div className="flex items-center mt-4 md:mt-7">
                 <Left className=" w-2 md:w-4 mr-2" />
-                <div className=" text-xs md:text-2xl">목록으로</div>
+                <Link to="/" className="text-xs md:text-2xl">
+                    목록으로
+                </Link>
             </div>
             <div className="flex mt-5 md:mt-10">
                 <div className="avatar mr-3 md:mr-7">
@@ -111,7 +80,14 @@ function MemberDetail() {
                                 {userData.name}
                             </div>
                             <div className=" md:block text-xl font-extrabold">
-                                @{userData.githubUsername}
+                                <a
+                                    href={`https://github.com/${userData.githubUsername}`}
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                >
+                                    {" "}
+                                    @{userData.githubUsername}
+                                </a>
                             </div>
                         </div>
                     </div>
@@ -157,8 +133,15 @@ function MemberDetail() {
                         TIL
                     </div>
                     <div className="til-link flex text-sm md:text-xl md:mr-7 text-pointColor">
-                        <Link className="mr-2 md:w-6 md:h-6" />
-                        {userData.websiteUrl}
+                        <LinkIcon className="mr-2 md:w-6 md:h-6" />
+                        <a
+                            href={`${userData.websiteUrl}`}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                        >
+                            {" "}
+                            {userData.websiteUrl}
+                        </a>
                     </div>
                 </div>
 
@@ -167,8 +150,15 @@ function MemberDetail() {
                         Github
                     </div>
                     <div className="github-link flex text-sm md:text-xl text-pointColor">
-                        <Link className="mr-2 md:w-6 md:h-6" />
-                        https://github.com/{userData.githubUsername}
+                        <LinkIcon className="mr-2 md:w-6 md:h-6" />
+                        <a
+                            href={`https://github.com/${userData.githubUsername}`}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                        >
+                            {" "}
+                            https://github.com/{userData.githubUsername}
+                        </a>
                     </div>
                 </div>
             </div>
@@ -177,7 +167,11 @@ function MemberDetail() {
                     Push Events
                 </div>
                 <div className="flex items-center justify-center rounded-full text-xs font-bold bg-pointColor w-7 h-4 md:w-9 md:h-6">
-                    {todayCommits.length}
+                    {
+                        userData.last28daysContributionCounts[
+                            userData.last28daysContributionCounts.length - 1
+                        ]
+                    }
                 </div>
             </div>
             {todayCommits.length > 0 && (
