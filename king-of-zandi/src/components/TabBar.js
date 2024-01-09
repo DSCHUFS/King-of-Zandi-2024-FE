@@ -24,7 +24,7 @@ const TabBar = () => {
         <div className="flex justify-between text-xl items-center px-4 md:px-20 py-5 sm:py-3">
             <div className="flex ">
                 {tabs.map((tab, i) => (
-                    <div key={i} className="w-[104px]" >
+                    <div key={i} className="w-28" >
                         <div
                             onClick={() => onClickTab(tab.id)}
                             className={cls(
