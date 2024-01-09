@@ -1,4 +1,6 @@
 import React, { useState } from "react";
+import { useRecoilState } from "recoil";
+import { tabState } from "./atom";
 
 const tabs = [
     { content: "최근 커밋 순", id: 0 },
@@ -11,10 +13,11 @@ export function cls(...classNames) {
 }
 
 const TabBar = () => {
-    const [tabId, setTabId] = useState(0);
+    const [tabId, setTabId] = useRecoilState(tabState);
 
     const onClickTab = (id) => {
         setTabId(id);
+        console.log(tabId)
     };
 
     return (

@@ -4,3 +4,8 @@ export const tableState = atom({
     key: 'tableState',
     default: true,
 });
+
+export const tabState = atom({
+    key: "tabState",
+    default: 0
+})
