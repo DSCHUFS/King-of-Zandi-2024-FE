@@ -38,7 +38,11 @@ function MemberDetail() {
     }, [githubProfileID]);
 
     if (!userData) {
-        return <div>Loading...</div>;
+        return (
+            <div className=" flex justify-center mt-72">
+                <div className="custom-loader"></div>
+            </div>
+        );
     }
 
     return (
@@ -76,7 +80,14 @@ function MemberDetail() {
                                 {userData.name}
                             </div>
                             <div className=" md:block text-xl font-extrabold">
-                                @{userData.githubUsername}
+                                <a
+                                    href={`https://github.com/${userData.githubUsername}`}
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                >
+                                    {" "}
+                                    @{userData.githubUsername}
+                                </a>
                             </div>
                         </div>
                     </div>
@@ -122,8 +133,15 @@ function MemberDetail() {
                         TIL
                     </div>
                     <div className="til-link flex text-sm md:text-xl md:mr-7 text-pointColor">
-                        <Link className="mr-2 md:w-6 md:h-6" />
-                        {userData.websiteUrl}
+                        <LinkIcon className="mr-2 md:w-6 md:h-6" />
+                        <a
+                            href={`${userData.websiteUrl}`}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                        >
+                            {" "}
+                            {userData.websiteUrl}
+                        </a>
                     </div>
                 </div>
 
@@ -133,7 +151,14 @@ function MemberDetail() {
                     </div>
                     <div className="github-link flex text-sm md:text-xl text-pointColor">
                         <LinkIcon className="mr-2 md:w-6 md:h-6" />
-                        https://github.com/{userData.githubUsername}
+                        <a
+                            href={`https://github.com/${userData.githubUsername}`}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                        >
+                            {" "}
+                            https://github.com/{userData.githubUsername}
+                        </a>
                     </div>
                 </div>
             </div>
@@ -142,7 +167,11 @@ function MemberDetail() {
                     Push Events
                 </div>
                 <div className="flex items-center justify-center rounded-full text-xs font-bold bg-pointColor w-7 h-4 md:w-9 md:h-6">
-                    {todayCommits.length}
+                    {
+                        userData.last28daysContributionCounts[
+                            userData.last28daysContributionCounts.length - 1
+                        ]
+                    }
                 </div>
             </div>
             {todayCommits.length > 0 && (

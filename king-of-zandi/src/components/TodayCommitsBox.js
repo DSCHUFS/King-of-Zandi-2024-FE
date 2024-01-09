@@ -9,7 +9,7 @@ function TodayCommitsBox({ commits, name }) {
             rel="noopener noreferrer"
         >
             {" "}
-            <div className="flex justify-between items-center p-3 md:p-6 bg-[#242625] h-12 md:h-24 rounded-xl">
+            <div className="flex justify-between items-center p-3 md:p-6 bg-[#242625] h-16 md:h-24 rounded-xl">
                 <div className="flex flex-col">
                     <div className="flex flex-wrap font-bold text-xs md:text-xl">
                         <div className="pr-1 flex flex-wrap">
@@ -32,7 +32,7 @@ function TodayCommitsBox({ commits, name }) {
                         )}
                     </div>
                 </div>
-                <Right className="w-2" />
+                <Right className="w-2 mx-3" />
             </div>
         </a>
     );
