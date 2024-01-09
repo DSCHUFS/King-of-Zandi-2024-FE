@@ -1,32 +1,16 @@
 import React from "react";
-import { ReactComponent as Profile } from "../assets/image/profile.svg";
 
 const Box = ({ color }) => {
     return <div className={`w-2 h-2 rounded-[1px] m-0.5 ${color}`}></div>;
 };
 
-const Grid = () => {
+const Grid = ({ last28 }) => {
     const rows = 4;
     const columns = 7;
 
+    const colors = last28.map(i => i === 0 ? "bg-faultColor" : "bg-pointColor")
     // 28개의 색상 정보 배열
-    const colors = [
-        "bg-pointColor",
-        "bg-pointColor",
-        "bg-pointColor",
-        "bg-pointColor",
-        "bg-pointColor",
-        "bg-faultColor",
-        "bg-pointColor",
-        "bg-pointColor",
-        "bg-pointColor",
-        "bg-pointColor",
-        "bg-pointColor",
-        "bg-faultColor",
-        "bg-pointColor",
-        "bg-pointColor",
-        // 추가적인 색상을 필요에 따라 계속 추가
-    ];
+
 
     // 행렬을 만들기 위한 이중 반복문
     const matrix = [];
@@ -48,26 +32,44 @@ const Grid = () => {
     return <div>{matrix}</div>;
 };
 
-const ProfileListItem = ({ index = 0 }) => {
+function extractDateAndTime(dateTimeString) {
+    const datePart = dateTimeString.slice(0, 4) + "년 " + dateTimeString.slice(5, 7) + "월 " + dateTimeString.slice(8, 10) + "일";
+    const timePart = dateTimeString.slice(11, 19);
+
+
+    return { date: datePart, time: timePart };
+}
+
+
+const ProfileListItem = ({ index,
+    name,
+    githubUsername,
+    streak,
+    total,
+    last28,
+    lastPush
+}) => {
+    const { date, time } = extractDateAndTime(lastPush)
+
     return (
         <div className="flex justify-between items-center m-3 p-4 md:p-4 bg-bgColor h-20 md:h-16 rounded-lg">
             <div className="flex items-center">
                 <div className="font-extrabold text-xl w-5">{index}</div>
-                <Profile className="w-12 mx-3 h-12 md:w-12 md:h-12 text-nowrap" />
+                <img src={`https://github.com/${githubUsername}.png`} className="w-12 mx-3 h-12 md:w-12 md:h-12 text-nowrap rounded-full" />
                 <div className="font-extrabold text-base text-nowrap mr-4">
-                    김훕스
+                    {name}
                 </div>
             </div>
 
-            <div className="flex md:flex-col lg:flex-row">
+            <div className="flex md:flex-col lg:flex-row items-center">
                 <div className="hidden lg:block font-normal text-sm text-nowrap mx-4">
                     최근 커밋 시간
                 </div>
                 <div className="hidden ml:block font-extrabold text-base mr-2">
-                    2024년 1월 13일
+                    {date}
                 </div>
                 <div className="hidden ml:block font-extrabold text-base mr-8">
-                    16:03:22
+                    {time}
                 </div>
             </div>
 
@@ -77,7 +79,7 @@ const ProfileListItem = ({ index = 0 }) => {
                         Streak🔥
                     </div>
                     <div className="font-extrabold text-pointColor text-base mr-8">
-                        2
+                        {streak}
                     </div>
                 </div>
                 <div className="flex items-center">
@@ -85,11 +87,11 @@ const ProfileListItem = ({ index = 0 }) => {
                         총 커밋 횟수
                     </div>
                     <div className="font-extrabold text-pointColor text-base mr-12">
-                        745
+                        {total}
                     </div>
                 </div>
             </div>
-            <Grid />
+            <Grid last28={last28} />
         </div>
     );
 };
