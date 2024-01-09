@@ -22,20 +22,24 @@ const TabBar = () => {
 
     return (
         <div className="flex justify-between text-xl items-center px-4 md:px-20 py-5 sm:py-3">
-            <div className="flex  space-x-3 ">
-                {tabs.map((tab) => (
-                    <div
-                        onClick={() => onClickTab(tab.id)}
-                        className={cls(
-                            "btn bg-none h-auto border rounded-full px-3 py-1 cursor-pointer ",
-                            tabId === tab.id
-                                ? "bg-pointColor text-white font-bold border-pointColor hover:bg-pointColor hover:border-pointColor"
-                                : "bg-black text-dummyColor border-dummyColor font-normal hover:border-dummyColor"
-                        )}
-                        style={{ minHeight: "auto" }}
-                    >
-                        {tab.content}
+            <div className="flex ">
+                {tabs.map((tab, i) => (
+                    <div key={i} className="w-[104px]" >
+                        <div
+                            onClick={() => onClickTab(tab.id)}
+                            className={cls(
+                                "btn bg-none h-auto border rounded-full px-3 py-1 cursor-pointer ",
+                                tabId === tab.id
+                                    ? "bg-pointColor text-white font-bold border-pointColor hover:bg-pointColor hover:border-pointColor"
+                                    : "bg-black text-dummyColor border-dummyColor font-normal hover:border-dummyColor"
+                            )}
+                            style={{ minHeight: "auto" }}
+                        >
+                            {tab.content}
+                        </div>
                     </div>
+
+
                 ))}
             </div>
             <div className="text-sm hidden md:inline-block">
