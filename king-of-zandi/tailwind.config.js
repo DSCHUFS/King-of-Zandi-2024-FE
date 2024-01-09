@@ -7,6 +7,7 @@ module.exports = {
     theme: {
         extend: {
             screens: {
+                xs: "330px", // 최소 뷰
                 sm: "430px", // 핸드폰 뷰
                 md: "768px",
                 lg: "1200px", // 전체 뷰
