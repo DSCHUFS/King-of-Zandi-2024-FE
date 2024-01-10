@@ -10,7 +10,9 @@ function CommitStreakBox({ pushCounts }) {
                 <div
                     key={index}
                     className={`w-5 md:w-9 h-5 md:h-9 rounded-sm m-[2px] md:m-[4px] ${
-                        count > 0 ? " bg-pointColor" : " bg-faultColor"
+                        count > 0 ? " bg-pointColor" : ""
+                    } ${count === 0 ? " bg-faultColor" : ""} ${
+                        count === -1 ? "bg-white" : ""
                     }`}
                 ></div>
             ))}
