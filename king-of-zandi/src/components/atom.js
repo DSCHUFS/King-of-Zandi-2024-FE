@@ -1,11 +1,16 @@
-import { atom } from 'recoil'
+import { atom } from "recoil";
 
 export const tableState = atom({
-    key: 'tableState',
+    key: "tableState",
     default: true,
 });
 
 export const tabState = atom({
     key: "tabState",
-    default: 0
-})
+    default: 0,
+});
+
+export const lastHomeUpdateDateState = atom({
+    key: "lastHomeUpdateDateState",
+    default: undefined,
+});
