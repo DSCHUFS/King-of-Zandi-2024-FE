@@ -10,7 +10,7 @@ const Grid = ({ last28 }) => {
     const columns = 7;
 
     const colors = last28.map((i) =>
-        i === 0 ? "bg-faultColor" : "bg-pointColor"
+        i === 0 ? "bg-faultColor" : i === -1 ? "bg-white" : "bg-pointColor"
     );
     // 28개의 색상 정보 배열
 
