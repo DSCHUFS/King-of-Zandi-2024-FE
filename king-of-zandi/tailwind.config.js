@@ -19,6 +19,7 @@ module.exports = {
                 bgColor: "#242625",
                 divideColor: "#737373",
                 dummyColor: "#999999",
+                white: "#FFFFFF",
             },
         },
     },
