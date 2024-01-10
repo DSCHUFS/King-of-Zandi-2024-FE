@@ -13,7 +13,7 @@ const ProfileListBox = ({ name, last28, githubUsername }) => {
                     src={`https://github.com/${githubUsername}.png`}
                     className="w-8 mr-3 h-8 md:w-8 md:h-8 text-nowrap rounded-full"
                 />
-                <div className="font-extrabold text-base text-nowrap mr-10">
+                <div className="font-extrabold text-base text-nowrap w-20 mr-4">
                     {name}
                 </div>
             </div>
@@ -32,14 +32,6 @@ const ProfileListBox = ({ name, last28, githubUsername }) => {
                         ></div>
                     ))}
                 </div>
-                {/* <div className="flex flex-wrap">
-                    {Array.from({ length: 14 }).map((_, index) => (
-                        <div
-                            key={index}
-                            className="w-4 h-4 bg-white rounded-sm m-[2px] md:m-[4px]"
-                        ></div>
-                    ))}
-                </div> */}
             </div>
         </Link>
     );
