@@ -167,11 +167,13 @@ function MemberDetail() {
                     Push Events
                 </div>
                 <div className="flex items-center justify-center rounded-full text-xs font-bold bg-pointColor w-7 h-4 md:w-9 md:h-6">
-                    {
+                    {userData.last28daysContributionCounts
+                        .slice()
+                        .reverse()
+                        .find((num) => num !== -1) ??
                         userData.last28daysContributionCounts[
                             userData.last28daysContributionCounts.length - 1
-                        ]
-                    }
+                        ]}
                 </div>
             </div>
             {todayCommits.length > 0 && (
