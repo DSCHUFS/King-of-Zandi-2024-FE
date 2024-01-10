@@ -43,7 +43,7 @@ const ProfileList = () => {
                             name={user.name}
                             githubUsername={user.githubUsername}
                             streak={user.streakCounts}
-                            total={user.totalCommitCounts}
+                            total={user.totalContributions}
                             last28={user.last28daysContributionCounts}
                             lastPush={user.latestPushedAt}
                         />
