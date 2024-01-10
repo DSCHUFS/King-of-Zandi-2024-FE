@@ -22,8 +22,12 @@ const ProfileListBox = ({ name, last28, githubUsername }) => {
                     {last28.map((i, index) => (
                         <div
                             key={index}
-                            className={`w-5 h-5 ${
-                                i === 0 ? "bg-white" : "bg-pointColor"
+                            className={`w-3 h-3 sm:w-5 sm:h-5 ${
+                                i === 0
+                                    ? "bg-faultColor"
+                                    : i === -1
+                                    ? "bg-white"
+                                    : "bg-pointColor"
                             } rounded-sm m-[2px]`}
                         ></div>
                     ))}
