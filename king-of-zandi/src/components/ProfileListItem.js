@@ -103,10 +103,10 @@ const ProfileListItem = ({
                 </div>
                 <div className="flex items-center">
                     <div className="font-normal text-sm sm:text-base text-nowrap mr-2">
-                        총 커밋 횟수
+                        총 커밋 일자
                     </div>
                     <div className="font-extrabold text-pointColor text-sm sm:text-base sm:w-12 mr-2">
-                        {total}
+                        {last28.filter((i) => i > 0).length}
                     </div>
                 </div>
             </div>
