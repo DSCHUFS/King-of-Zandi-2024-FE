@@ -1,6 +1,6 @@
 import React, { useState } from "react";
-import { useRecoilState } from "recoil";
-import { tabState } from "./atom";
+import { useRecoilState, useRecoilValue } from "recoil";
+import { lastHomeUpdateDateState, tabState } from "./atom";
 
 const tabs = [
     { content: "최근 커밋 순", id: 0 },
@@ -14,17 +14,18 @@ export function cls(...classNames) {
 
 const TabBar = () => {
     const [tabId, setTabId] = useRecoilState(tabState);
+    const lastHomeUpdateDate = useRecoilValue(lastHomeUpdateDateState);
 
     const onClickTab = (id) => {
         setTabId(id);
-        console.log(tabId)
+        console.log(tabId);
     };
 
     return (
         <div className="flex justify-between text-xl items-center px-4 md:px-20 py-5 sm:py-3">
             <div className="flex ">
                 {tabs.map((tab, i) => (
-                    <div key={i} className="w-28" >
+                    <div key={i} className="w-28">
                         <div
                             onClick={() => onClickTab(tab.id)}
                             className={cls(
@@ -38,13 +39,15 @@ const TabBar = () => {
                             {tab.content}
                         </div>
                     </div>
-
-
                 ))}
             </div>
             <div className="text-sm hidden md:inline-block">
                 업데이트 시간{" "}
-                <span className="font-bold">2024년 1월 13일 16:03:22</span>
+                <span className="font-bold">
+                    {lastHomeUpdateDate
+                        ? lastHomeUpdateDate.toLocaleString()
+                        : "Loading..."}
+                </span>
             </div>
         </div>
     );
