@@ -28,9 +28,9 @@ https://website-jandi.web.app/
 | [<img src="https://avatars.githubusercontent.com/u/71630722?v=4" height=100 width=100> <br/> @Dawon00](https://github.com/Dawon00) | [<img src="https://avatars.githubusercontent.com/u/72244728?v=4" height=100 width=100> <br/> @juhui88](https://github.com/juhui88) | [<img src="https://github.com/s00ngle.png" height=100 width=100> <br/> @s00ngle](https://github.com/s00ngle) |
 
 ### BE Developer
-| **김경록** | **김광현** | 
-| :------: | :------: |
-| [<img src="https://avatars.githubusercontent.com/u/8374832?v=4" height=100 width=100> <br/> @gomsang](https://github.com/gomsang) | [<img src="https://github.com/g00hyun.png" height=100 width=100> <br/> @g00hyun](https://github.com/g00hyun) |
+| **김경록** | **김광현** | **박원정** | 
+| :------: | :------: |:------: |
+| [<img src="https://avatars.githubusercontent.com/u/8374832?v=4" height=100 width=100> <br/> @gomsang](https://github.com/gomsang) | [<img src="https://github.com/g00hyun.png" height=100 width=100> <br/> @g00hyun](https://github.com/g00hyun) |[<img src="https://github.com/ParkWonjeong.png" height=100 width=100> <br/> @ParkWonjeong](https://github.com/ParkWonjeong) |
 
 ## 사용 기술
 Typescript, Firebase Functions, Express.js
