@@ -23,7 +23,7 @@ const ProfileList = () => {
             return "latestPushedAt";
         } else if (tabId === 1) {
             return "streakCounts";
-        } else return "totalContributions";
+        } else return "activeDayCount";
     };
 
     useEffect(() => {

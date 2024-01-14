@@ -5,7 +5,7 @@ import { lastHomeUpdateDateState, tabState } from "./atom";
 const tabs = [
     { content: "최근 커밋 순", id: 0 },
     { content: "Streak🔥 순", id: 1 },
-    { content: "총 커밋 순", id: 2 },
+    { content: "총 커밋 일자 순", id: 2 },
 ];
 
 export function cls(...classNames) {
@@ -25,7 +25,7 @@ const TabBar = () => {
         <div className="flex justify-between text-xl items-center px-4 md:px-20 py-5 sm:py-3">
             <div className="flex ">
                 {tabs.map((tab, i) => (
-                    <div key={i} className="w-28">
+                    <div key={i} className="mr-2">
                         <div
                             onClick={() => onClickTab(tab.id)}
                             className={cls(
