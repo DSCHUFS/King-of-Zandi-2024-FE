@@ -164,7 +164,7 @@ function MemberDetail() {
             </div>
             <div className="flex items-center mt-7 mb-3 md:mt-8 md:mb-5">
                 <div className="font-bold text-sm mr-3 md:text-xl">
-                    Push Events
+                    Push Events✨
                 </div>
                 <div className="flex items-center justify-center rounded-full text-xs font-bold bg-pointColor w-7 h-4 md:w-9 md:h-6">
                     {userData.last28daysContributionCounts
@@ -185,7 +185,7 @@ function MemberDetail() {
             {/* Commit Streak Box 구현 */}
             <div className="flex mt-7 md:mt-16 mb-3 md:mb-5">
                 <div className="font-bold text-sm mr-3 md:text-xl ">
-                    Commit Streak🔥
+                    Total Commits 🌱
                 </div>{" "}
                 <div className="flex items-center justify-center rounded-full text-xs font-bold bg-pointColor w-7 h-4 md:w-9 md:h-6">
                     {
