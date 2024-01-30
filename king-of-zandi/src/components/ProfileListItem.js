@@ -39,14 +39,23 @@ function extractDateAndTime(dateTimeString) {
     if (!dateTimeString) {
         return { date: "None", time: "" };
     }
-    const datePart =
-        dateTimeString.slice(0, 4) +
-        "년 " +
-        dateTimeString.slice(5, 7) +
-        "월 " +
-        dateTimeString.slice(8, 10) +
-        "일";
-    const timePart = dateTimeString.slice(11, 19);
+    let utcDate = new Date(dateTimeString);
+
+    // YYYY년 MM월 DD일 형식
+    const datePart = `${utcDate.getFullYear()}년 ${(utcDate.getMonth() + 1)
+        .toString()
+        .padStart(2, "0")}월 ${utcDate
+        .getDate()
+        .toString()
+        .padStart(2, "0")}일`;
+    // 시간 HH:MM:SS 형식
+    const timePart = `${utcDate
+        .getHours()
+        .toString()
+        .padStart(2, "0")}:${utcDate
+        .getMinutes()
+        .toString()
+        .padStart(2, "0")}:${utcDate.getSeconds().toString().padStart(2, "0")}`;
 
     return { date: datePart, time: timePart };
 }
